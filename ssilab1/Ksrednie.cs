@@ -44,7 +44,7 @@ public static class KSrednie{
             int ile=0;
             for(int s=0;s<punkty.Count;s++){
                 if(u[s]==j){
-                    for(int i=0;i>n;i++){
+                    for(int i=0;i<n;i++){
                         suma[i]+=punkty[s][i];
                     }
                     ile++;
@@ -57,5 +57,50 @@ public static class KSrednie{
                 srodki[j][i]=suma[i]/ile;
             }
         }
+    }
+    public static int[] Uruchom(List<List<double>> punkty, List<List<double>> srodki, int iters,Func<List<double>,List<double>,double> odleglosc, int zapispo,out Stan stanzapis, out int iteracje, out bool zbiezny){
+        int[] u= new int[punkty.Count];
+        stanzapis=new Stan();
+        int[] poprzednie=new int[punkty.Count];
+        for(int s=0;s<poprzednie.Length;s++){
+            poprzednie[s]=-1;
+        }
+        int ostatniazmiana=0;
+        for(int it=0;it<iters;it++){
+            u=Przypisz(punkty,srodki,odleglosc);
+            bool bylazmiana=false;
+            for(int s=0;s<u.Length;s++){
+                if(u[s]!=poprzednie[s]){
+                    bylazmiana=true;
+                }
+            }
+            if(bylazmiana==true){
+                ostatniazmiana=it+1;
+            }
+            PrzeliczSrodki(punkty,srodki,u);
+            if(it+1==zapispo){
+                stanzapis=Kopiuj(u,srodki);
+            }
+            poprzednie=u;
+        }
+        iteracje=ostatniazmiana;
+        if(ostatniazmiana<iters){
+            zbiezny=true;
+        }else{
+            zbiezny=false;
+        }
+        return u;
+    }
+    public static Stan Kopiuj(int[] u, List<List<double>> center){
+        Stan st=new Stan();
+        st.U=new int[u.Length];
+        for(int s=0;s<u.Length;s++){
+            st.U[s]=u[s];
+        }
+        st.center=new List<List<double>>();
+        for(int j=0;j<center.Count;j++){
+            st.center.Add(new List<double>(center[j]));
+        }
+        return st;
     }
 }

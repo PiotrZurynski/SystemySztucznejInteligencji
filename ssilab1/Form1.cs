@@ -1,3 +1,4 @@
+using System.Globalization;
 namespace ssilab1;
 
 public partial class Form1 : Form
@@ -53,4 +54,22 @@ public partial class Form1 : Form
             sciezka=OpenFileDialog1.FileName;
         }
     }
+    List<List<double>> WczytajCsv(string plik){
+        List<List<double>> punkty =new List<List<double>>();
+        string[] linie =File.ReadAllLines(plik);
+        foreach(string linia in linie){
+            if(linia.Trim()==""){
+                continue;
+            }
+            string[]czesci=linia.Split(',',';');
+            List<double>punkt=new List<double>();
+            foreach(string czesc in czesci){
+                punkt.Add(double.Parse(czesc.Trim(),CultureInfo.InvariantCulture()));
+            }
+            punkty.Add(punkt);
+        }
+        return punkty;
+    }
+    
+    
 }

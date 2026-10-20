@@ -4,6 +4,7 @@ namespace ssilab1;
 public partial class Form1 : Form
 {
     string sciezka="";
+    Random rnd = new Random();
     NumericUpDown numK;
     NumericUpDown numIter;
     Label lblWynik;
@@ -40,7 +41,9 @@ public partial class Form1 : Form
             List<List<double>>punkty = WczytajCsv(sciezka);
             int k=(int)numK.Value;
             int iters=(int)numIter.Value;
-            lblWynik.Text="Wczytano punktów: "+punkty.Count+", wymiar: "+punkty[0].Count+"\nk: "+k+", iteracji: "+iters;
+            var srodki=KSrednie.LosujSrodki(punkty,k,rnd);
+            lblWynik.Text="Środek 1: x1="+srodki[0][0] +" x2="+srodki[0][1];
+            //lblWynik.Text="Wczytano punktów: "+punkty.Count+", wymiar: "+punkty[0].Count+"\nk: "+k+", iteracji: "+iters;
         }catch(Exception ee){
             lblWynik.Text="Błąd: "+ee.Message;
         }

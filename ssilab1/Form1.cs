@@ -36,7 +36,14 @@ public partial class Form1 : Form
 
     }
     void BtnOblicz_Click(object? sender, EventArgs e){
-        lblWynik.Text="Wybrany plik: "+sciezka;
+        try{
+            List<List<double>>punkty = WczytajCsv(sciezka);
+            int k=(int)numK.Value;
+            int iters=(int)numIter.Value;
+            lblWynik.Text="Wczytano punktów: "+punkty.Count+", wymiar: "+punkty[0].Count+"\nk: "+k+", iteracji: "+iters;
+        }catch(Exception ee){
+            lblWynik.Text="Błąd: "+ee.Message;
+        }
     }
     void BrowseClick(object? sender, EventArgs e){
         OpenFileDialog OpenFileDialog1=new OpenFileDialog{
@@ -64,7 +71,7 @@ public partial class Form1 : Form
             string[]czesci=linia.Split(',',';');
             List<double>punkt=new List<double>();
             foreach(string czesc in czesci){
-                punkt.Add(double.Parse(czesc.Trim(),CultureInfo.InvariantCulture()));
+                punkt.Add(double.Parse(czesc.Trim(),CultureInfo.InvariantCulture));
             }
             punkty.Add(punkt);
         }

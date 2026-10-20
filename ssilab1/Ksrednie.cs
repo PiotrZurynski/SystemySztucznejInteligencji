@@ -103,4 +103,47 @@ public static class KSrednie{
         }
         return st;
     }
+    public static string Raport(List<List<double>> punkty, List<List<double>> srodki, int[] u){
+        string tekst="";
+        int n=punkty[0].Count;
+        for(int j=0;j<srodki.Count;j++){
+            double[] min=new double[n];
+            double[] max =new double[n];
+            for(int i=0;i<n;i++){
+                min[i]=double.MaxValue;
+                max[i]=double.MinValue;
+            }
+            int ile=0;
+            string numery="";
+            for(int s=0;s<punkty.Count;s++){
+                if(u[s]==j){
+                    ile++;
+                    numery+=(s+1)+" ";
+                    for(int i=0;i<n;i++){
+                        if(punkty[s][i]<min[i]){
+                            min[i]=punkty[s][i];
+                        }
+                        if(punkty[s][i]>max[i]){
+                            max[i]=punkty[s][i];
+                        }
+                    }
+                }
+            }
+            tekst+="Grupa "+(j+1)+", probek: "+ile+Environment.NewLine;
+            tekst+=" środek:";
+            for(int i=0;i<n;i++){
+                tekst+=" x"+(i+1)+"="+srodki[j][i].ToString("F4");
+            }
+            tekst+=Environment.NewLine;
+            if(ile==0){
+                tekst+=" (grupa pusta)"+Environment.NewLine;
+            }else{
+                for(int i=0;i<n;i++){
+                    tekst+=" x"+(j+1)+" min="+min[i].ToString("F4")+" max="+max[i].ToString("F4")+Environment.NewLine;
+                }
+                tekst+=" probki: "+numery+Environment.NewLine;
+            }
+        }
+        return tekst;
+    }
 }

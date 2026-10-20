@@ -53,7 +53,8 @@ public partial class Form1 : Form
             int iteracje;
             bool zbiezny;
             int[] u=KSrednie.Uruchom(punkty,srodki,iters,test,5,out zapis,out iteracje,out zbiezny);
-            lblWynik.Text="Iteracje: "+iteracje+", zbieżny: "+zbiezny+", środek 1: x1="+srodki[0][0]+" x2="+srodki[0][1];
+            //lblWynik.Text="Iteracje: "+iteracje+", zbieżny: "+zbiezny+", środek 1: x1="+srodki[0][0]+" x2="+srodki[0][1];
+            lblWynik.Text=KSrednie.Raport(punkty,srodki,u);
         }catch(Exception ee){
             lblWynik.Text="Błąd: "+ee.Message;
         }

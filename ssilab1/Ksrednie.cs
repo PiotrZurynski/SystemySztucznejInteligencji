@@ -21,4 +21,20 @@ public static class KSrednie{
         }
         return srodki;
     }
+    public static int[] Przypisz(List<List<double>>punkty,List<List<double>>srodki,Func<List<double>,List<double>,double> odleglosc){
+        int[] u=new int [punkty.Count];
+        for(int s=0;s<punkty.Count;s++){
+            int najblizszy=0;
+            double minodl=odleglosc(punkty[s],srodki[0]);
+            for(int j=1;j<srodki.Count;j++){
+                double d=odleglosc(punkty[s],srodki[j]);
+                if(d<minodl){
+                    minodl=d;
+                    najblizszy=j;
+                }
+            }
+            u[s]=najblizszy;
+        }
+        return u;
+    }
 }

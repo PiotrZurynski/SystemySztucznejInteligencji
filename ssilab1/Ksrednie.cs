@@ -37,4 +37,25 @@ public static class KSrednie{
         }
         return u;
     }
+    public static void PrzeliczSrodki(List<List<double>> punkty, List<List<double>> srodki, int[] u){
+        int n=punkty[0].Count;
+        for(int j=0;j<srodki.Count;j++){
+            double[] suma=new double[n];
+            int ile=0;
+            for(int s=0;s<punkty.Count;s++){
+                if(u[s]==j){
+                    for(int i=0;i>n;i++){
+                        suma[i]+=punkty[s][i];
+                    }
+                    ile++;
+                }
+            }
+            if(ile==0){
+                continue;
+            }
+            for(int i=0;i<n;i++){
+                srodki[j][i]=suma[i]/ile;
+            }
+        }
+    }
 }

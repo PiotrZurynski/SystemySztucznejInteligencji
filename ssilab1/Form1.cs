@@ -46,7 +46,9 @@ public partial class Form1 : Form
             //lblWynik.Text="Wczytano punktów: "+punkty.Count+", wymiar: "+punkty[0].Count+"\nk: "+k+", iteracji: "+iters;
             Func<List<double>,List<double>,double> test=(a,b)=>Math.Sqrt(Math.Pow(a[0]-b[0],2)+Math.Pow(a[1]-b[1],2));
             int[] u =KSrednie.Przypisz(punkty,srodki,test);
-            lblWynik.Text="Punkt 1-> grupa "+(u[0]+1);       
+            //lblWynik.Text="Punkt 1-> grupa "+(u[0]+1);       
+            KSrednie.PrzeliczSrodki(punkty,srodki,u);
+            lblWynik.Text="Środek 1 po przeliczeniu: x1="+srodki[0][0]+" x2="+srodki[0][1];
         }catch(Exception ee){
             lblWynik.Text="Błąd: "+ee.Message;
         }

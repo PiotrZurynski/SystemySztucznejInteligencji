@@ -8,4 +8,7 @@ public static class Metody{
         }
         return Math.Sqrt(suma);
     }
+    public static double x1(List<double> a, List<double> b){
+        return Math.Abs(a[0]-b[0]);
+    }
 }

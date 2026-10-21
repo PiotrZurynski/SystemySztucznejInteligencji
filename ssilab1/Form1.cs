@@ -122,7 +122,7 @@ public partial class Form1 : Form
         }
     }
     void Kopiuj4_Click(object? sender, EventArgs e){
-        if(dane4=""){
+        if(dane4==""){
             MessageBox.Show("Brak danych ");
             return;
         }
@@ -130,7 +130,7 @@ public partial class Form1 : Form
         MessageBox.Show("Skopiowano");
     }
     void KopiujKoniec_Click(object? sender, EventArgs e){
-        if(daneKoniec=""){
+        if(daneKoniec==""){
             MessageBox.Show("Kliknij start");
             return;
         }

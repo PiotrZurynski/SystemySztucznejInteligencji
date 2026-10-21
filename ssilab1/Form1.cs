@@ -11,6 +11,8 @@ public partial class Form1 : Form
     ComboBox comboMetody;
     TextBox txtRaport;
     Label lblWynik;
+    string dane4="";
+    string daneKoniec="";
 
     public Form1()
     {   
@@ -30,6 +32,10 @@ public partial class Form1 : Form
         txtRaport=new TextBox{Left=30,Top=370,Width=430,Height=220,Multiline=true,ScrollBars=ScrollBars.Vertical};
         var btnStart=new Button{Text="Start",Left=30,Top=170,Width=90,Height=30};
         btnStart.Click+=BtnOblicz_Click;
+        var btnKopiuj4=new Button{Text="Kopiuj (4 iter.)",Left=130, Top=170,Width=110,Height=30};
+        btnKopiuj4.Click+=Kopiuj4_Click;
+        var btnKopiujKoniec=new Button{Text="Kopiuj koniec", Left=250,Top=170,Width=110,Height=30};
+        btnKopiujKoniec.Click+=KopiujKoniec_Click;
         lblWynik=new Label{Left=30,Top=205,Width=300,Height=120,Text=""};
 
         Controls.Add(lblDane);
@@ -43,6 +49,8 @@ public partial class Form1 : Form
         Controls.Add(lblMetoda);
         Controls.Add(comboMetody);
         Controls.Add(txtRaport);
+        Controls.Add(btnKopiuj4);
+        Controls.Add(btnKopiujKoniec);
         ZaladujMetody();
 
     }
@@ -77,6 +85,12 @@ public partial class Form1 : Form
             }
             raport+="Stan po "+iters+" iteracjach"+Environment.NewLine+KSrednie.Raport(punkty,srodki,u);
             txtRaport.Text=raport;
+            daneKoniec=KSrednie.Dane(punkty,srodki,u);
+            if(iters>4){
+                dane4=KSrednie.Dane(punkty,stan4.center,stan4.U);
+            }else{
+                dane4="";
+            }
             //int[] u =KSrednie.Przypisz(punkty,srodki,test);
             //lblWynik.Text="Punkt 1-> grupa "+(u[0]+1);       
             //KSrednie.PrzeliczSrodki(punkty,srodki,u);
@@ -106,6 +120,22 @@ public partial class Form1 : Form
         if(OpenFileDialog1.ShowDialog()==DialogResult.OK){
             sciezka=OpenFileDialog1.FileName;
         }
+    }
+    void Kopiuj4_Click(object? sender, EventArgs e){
+        if(dane4=""){
+            MessageBox.Show("Brak danych ");
+            return;
+        }
+        Clipboard.SetText(dane4);
+        MessageBox.Show("Skopiowano");
+    }
+    void KopiujKoniec_Click(object? sender, EventArgs e){
+        if(daneKoniec=""){
+            MessageBox.Show("Kliknij start");
+            return;
+        }
+        Clipboard.SetText(daneKoniec);
+        MessageBox.Show("Skopiowano");
     }
     List<List<double>> WczytajCsv(string plik){
         List<List<double>> punkty =new List<List<double>>();

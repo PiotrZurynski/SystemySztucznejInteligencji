@@ -146,4 +146,29 @@ public static class KSrednie{
         }
         return tekst;
     }
+    public static string Dane(List<List<double>> punkty, List<List<double>> srodki, int[] u){
+        string tekst="x1";
+        for(int j=0;j<srodki.Count;j++){
+            tekst+="\tGrupa "+(j+1);
+        }
+        tekst+="\tSrodki"+Environment.NewLine;
+        for(int s=0;s<punkty.Count;s++){
+            tekst+=punkty[s][0];
+            for(int j=0;j<srodki.Count;j++){
+                tekst+="\t";
+                if(u[s]==j){
+                    tekst+=punkty[s][1];
+                }
+            }
+            tekst+="\t"+Environment.NewLine;
+        }
+        for(int j=0;j<srodki.Count;j++){
+            tekst+=srodki[j][0];
+            for(int g=0;g<srodki.Count;g++){
+                tekst+="\t";
+            }
+            tekst+="\t"+srodki[j][1]+Environment.NewLine;
+        }
+        return tekst;
+    }
 }

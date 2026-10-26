@@ -76,7 +76,7 @@ public partial class Form1 : Form
             if(zbiezny==true){
                 opis=" (zbiezne, po "+wykonane+" iteracjach)";
             }else{
-                opis=" (brak zbieznosci w "+iters+" iteracjach";
+                opis=" (brak zbieznosci w "+iters+" iteracjach)";
             }
             lblWynik.Text="Licznosc: "+string.Join(", ",ile)+"\nIteracji: "+iters+opis;
             string raport="";

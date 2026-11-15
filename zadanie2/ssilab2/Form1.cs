@@ -3,6 +3,8 @@ namespace ssilab2;
 public partial class Form1 : Form
 {
     TextBox txtRaport;
+    NumericUpDown numRozrzut;
+    NumericUpDown numWsp;
     public Form1()
     {
         InitializeComponent();
@@ -11,10 +13,21 @@ public partial class Form1 : Form
         Button btnStart=new Button{Text="Start",Left=30,Top=190,Width=90,Height=30};
         btnStart.Click+=btnStart_Click;
         txtRaport =new TextBox{Left=30,Top=240,Width=430,Height=350,Multiline=true,ScrollBars=ScrollBars.Vertical};
+
+        Label lblRozrzut=new Label{Text="Rozrzut:",Left=30,Top=30,AutoSize=true};
+        numRozrzut=new NumericUpDown{Left=220,Top=28,Width=80,DecimalPlaces=2,Minimum=0.01m,Maximum =100,Value=10};
+        Label lblWsp=new Label{Text="Współczynnik przyrostu",Left=30,Top=60,AutoSize=true};
+        numWsp=new NumericUpDown{Left=220,Top=58,Width=80,DecimalPlaces=2,Increment=0.01m,Minimum=1.01m,Maximum=10,Value=1.1m};
+        Controls.Add(lblRozrzut);
+        Controls.Add(numRozrzut);
+        Controls.Add(lblWsp);
+        Controls.Add(numWsp);
         Controls.Add(btnStart);
         Controls.Add(txtRaport);
     }
     void btnStart_Click(object? sender, EventArgs e){
-        txtRaport.Text="click";
+        double rozrzut=(double)numRozrzut.Value;
+        double wsp=(double)numWsp.Value;
+        txtRaport.Text="Rozrzut: "+rozrzut+Environment.NewLine +"Współczynnik przyrostu:  "+ wsp;
     }
 }

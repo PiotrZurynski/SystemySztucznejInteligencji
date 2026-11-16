@@ -65,7 +65,7 @@ public partial class Form1 : Form
 
 
         int iteracje=(int)numIter.Value;
-        txtRaport.Text="Rozrzut: "+rozrzut+Environment.NewLine +"Współczynnik przyrostu:  "+ wsp +Environment.NewLine + "Liczba iteracji:"+iteracje +Environment.NewLine+ "Zakres zmienności: "+zakresOd+" do "+zakresDo +Environment.NewLine+"Losowanie startu: "+startOd+" do "+startDo;
+        txtRaport.Text="Rozrzut: "+rozrzut+Environment.NewLine +"Współczynnik przyrostu:  "+ wsp +Environment.NewLine + "Liczba iteracji:"+iteracje +Environment.NewLine+ "Zakres zmienności: "+zakresOd+" do "+zakresDo +Environment.NewLine+"Losowanie startu: "+startOd+" do "+startDo + Environment.NewLine +"f(50)="+Algorytm11.oblicz(50);
 
     }
 }

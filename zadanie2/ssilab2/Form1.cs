@@ -6,6 +6,10 @@ public partial class Form1 : Form
     NumericUpDown numRozrzut;
     NumericUpDown numWsp;
     NumericUpDown numIter;
+    NumericUpDown numZakresOd;
+    NumericUpDown numZakresDo;
+    NumericUpDown numStartDo;
+    NumericUpDown numStartOd;
     public Form1()
     {
         InitializeComponent();
@@ -22,20 +26,46 @@ public partial class Form1 : Form
         Label lblIter = new Label{Text="Liczba iteracji:",Left=30,Top=90,AutoSize=true};
         numIter=new NumericUpDown{Left=220,Top=88,Width=80,Minimum=1,Maximum=1000,Value=100};
 
+        Label lblZakres = new Label{Text="Zakres zmienności x:",Left=30,Top=120,AutoSize=true};
+        numZakresOd=new NumericUpDown{Left=220,Top=118,Width=60,Minimum=-1000, Maximum=1000,Value=0};
+        Label lblZakresDo=new Label{Text="do",Left=285,Top=120,Width=20};
+        numZakresDo=new NumericUpDown{Left=310,Top=118,Width=60,Minimum=-1000,Maximum=1000,Value=100};
+
+        Label lblStart= new Label{Text="Losowanie startu x:", Left=30,Top=150,AutoSize=true};
+        numStartOd=new NumericUpDown{Left=220,Top=148,Width=60,Minimum=-1000,Maximum=1000,Value=0};
+        Label lblStartDo=new Label{Text="do", Left=285,Top=150,Width=20};
+        numStartDo=new NumericUpDown{Left=310,Top=148,Width=60,Minimum=-1000,Maximum=1000,Value=100};
+
+
+
         Controls.Add(lblRozrzut);
         Controls.Add(numRozrzut);
         Controls.Add(lblWsp);
         Controls.Add(numWsp);
         Controls.Add(lblIter);
         Controls.Add(numIter);
+        Controls.Add(lblZakres);
+        Controls.Add(numZakresOd);
+        Controls.Add(lblZakresDo);
+        Controls.Add(numZakresDo);
+        Controls.Add(lblStart);
+        Controls.Add(numStartOd);
+        Controls.Add(lblStartDo);
+        Controls.Add(numStartDo);
         Controls.Add(btnStart);
         Controls.Add(txtRaport);
     }
     void btnStart_Click(object? sender, EventArgs e){
         double rozrzut=(double)numRozrzut.Value;
         double wsp=(double)numWsp.Value;
+        double zakresOd=(double)numZakresOd.Value;
+        double zakresDo=(double)numZakresDo.Value;
+        double startOd=(double)numStartOd.Value;
+        double startDo=(double)numStartDo.Value;
+
+
         int iteracje=(int)numIter.Value;
-        txtRaport.Text="Rozrzut: "+rozrzut+Environment.NewLine +"Współczynnik przyrostu:  "+ wsp +Environment.NewLine + "Liczba iteracji:"+iteracje;
-        
+        txtRaport.Text="Rozrzut: "+rozrzut+Environment.NewLine +"Współczynnik przyrostu:  "+ wsp +Environment.NewLine + "Liczba iteracji:"+iteracje +Environment.NewLine+ "Zakres zmienności: "+zakresOd+" do "+zakresDo +Environment.NewLine+"Losowanie startu: "+startOd+" do "+startDo;
+
     }
 }

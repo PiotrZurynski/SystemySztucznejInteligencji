@@ -79,8 +79,8 @@ public partial class Form1 : Form
         int iteracje=(int)numIter.Value;
         double x=startOd+losuj.NextDouble()*(startDo-startOd);
         double y=Algorytm11.oblicz(x);
-        txtRaport.Text+=Environment.NewLine+"Start: x ="+x+", y = "+y;
-
+        txtRaport.Text="Iteracja\tx\ty\trozrzut"+Environment.NewLine;
+        txtRaport.Text+="0\t"+x+"\t"+y+"\t"+rozrzut+Environment.NewLine;
         for(int i=1;i<=iteracje;i++){
             double xpot=x+(losuj.NextDouble()*2-1)*rozrzut;
             if(xpot<zakresOd){
@@ -98,6 +98,7 @@ public partial class Form1 : Form
             else{
                 rozrzut=rozrzut/wsp;
             }
+            txtRaport.Text+=i+"\t"+x+"\t"+y+"\t"+rozrzut+Environment.NewLine;
         }
         txtRaport.Text+=Environment.NewLine+"Koniec: x ="+x+", y= "+y+" rozrzut="+rozrzut;
     }

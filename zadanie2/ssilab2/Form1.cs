@@ -69,5 +69,25 @@ public partial class Form1 : Form
         double x=startOd+losuj.NextDouble()*(startDo-startOd);
         double y=Algorytm11.oblicz(x);
         txtRaport.Text+=Environment.NewLine+"Start: x ="+x+", y = "+y;
+
+        for(int i=1;i<=iteracje;i++){
+            double xpot=x+(losuj.NextDouble()*2-1)*rozrzut;
+            if(xpot<zakresOd){
+                xpot=zakresOd;
+            }
+            if(xpot>zakresDo){
+                xpot=zakresDo;
+            }
+            double ypot=Algorytm11.oblicz(xpot);
+            if(ypot>=y){
+                x=xpot;
+                y=ypot;
+                rozrzut=rozrzut*wsp;
+            }
+            else{
+                rozrzut=rozrzut/wsp;
+            }
+        }
+        txtRaport.Text+=Environment.NewLine+"Koniec: x ="+x+", y= "+y+" rozrzut="+rozrzut;
     }
 }

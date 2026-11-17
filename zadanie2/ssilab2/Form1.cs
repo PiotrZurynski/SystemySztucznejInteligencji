@@ -63,7 +63,18 @@ public partial class Form1 : Form
         double zakresDo=(double)numZakresDo.Value;
         double startOd=(double)numStartOd.Value;
         double startDo=(double)numStartDo.Value;
-
+        if(zakresOd>=zakresDo){
+            MessageBox.Show("Błąd we wpisaniu wartości");
+            return;
+        }
+        if(startOd>startDo){
+            MessageBox.Show("Błąd we wpisaniu wartości");
+            return;
+        }
+        if(startOd<zakresOd || startDo>zakresDo){
+            MessageBox.Show("Błąd we wpisaniu wartości");
+            return;
+        }
 
         int iteracje=(int)numIter.Value;
         double x=startOd+losuj.NextDouble()*(startDo-startOd);

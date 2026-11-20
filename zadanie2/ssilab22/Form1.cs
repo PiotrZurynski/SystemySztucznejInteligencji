@@ -10,6 +10,7 @@ public partial class Form1 : Form
 
     NumericUpDown numOd;
     NumericUpDown numDo;
+    TextBox txtRaport;
     public Form1()
     {
         InitializeComponent();
@@ -29,6 +30,11 @@ public partial class Form1 : Form
         Label lblZakres=new Label{Text="Zakres x od /do",Left=30,Top=180,AutoSize=true};
         numOd=new NumericUpDown{Left=220,Top=178,Width=80,Minimum=-1000,Maximum=1000,Value=0};
         numDo=new NumericUpDown{Left=310,Top=178,Width=80,Minimum=-1000,Maximum=1000,Value=100};
+        Button btnStart=new Button{Text="Start",Left=30,Top=220,Width=90,Height=30};
+        btnStart.Click+=btnStart_Click;
+        txtRaport=new TextBox{Left=30,Top=270,Width=430,Height=320,Multiline=true,ScrollBars=ScrollBars.Vertical};
+
+
 
         Controls.Add(lblN);
         Controls.Add(numN);
@@ -43,5 +49,23 @@ public partial class Form1 : Form
         Controls.Add(lblZakres);
         Controls.Add(numOd);
         Controls.Add(numDo);
+        Controls.Add(btnStart);
+        Controls.Add(txtRaport);
+
+    }
+    void btnStart_Click(object? sender, EventArgs e){
+        int n=(int)numN.Value;
+        double rinercji=(double)numInercja.Value;
+        double rglob=(double)numGlob.Value;
+        double rlok=(double)numLok.Value;
+        int iteracje=(int)numIter.Value;
+        double xod=(double)numOd.Value;
+        double xdo=(double)numDo.Value;
+        if(xod>=xdo){
+            MessageBox.Show("Zakres musi być mniejszy niż 'do' ");
+            return;
+        }
+        txtRaport.Text="N="+n+" rinercji="+rinercji+" rglob="+rglob+" rlok="+rlok+Environment.NewLine;
+        txtRaport.Text+="iteracje="+iteracje+" zakres od "+xod+" do "+xdo+Environment.NewLine;
     }
 }

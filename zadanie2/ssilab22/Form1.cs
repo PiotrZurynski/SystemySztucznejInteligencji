@@ -7,6 +7,9 @@ public partial class Form1 : Form
     NumericUpDown numGlob;
     NumericUpDown numLok;
     NumericUpDown numIter;
+
+    NumericUpDown numOd;
+    NumericUpDown numDo;
     public Form1()
     {
         InitializeComponent();
@@ -23,6 +26,10 @@ public partial class Form1 : Form
         Label lblIter=new Label{Text="Liczba iteracji:",Left=30,Top=150,AutoSize=true};
         numIter=new NumericUpDown{Left=220,Top=148,Width=80,Minimum=1,Maximum=1000,Value=30};
 
+        Label lblZakres=new Label{Text="Zakres x od /do",Left=30,Top=180,AutoSize=true};
+        numOd=new NumericUpDown{Left=220,Top=178,Width=80,Minimum=-1000,Maximum=1000,Value=0};
+        numDo=new NumericUpDown{Left=310,Top=178,Width=80,Minimum=-1000,Maximum=1000,Value=100};
+
         Controls.Add(lblN);
         Controls.Add(numN);
         Controls.Add(lblInercja);
@@ -33,5 +40,8 @@ public partial class Form1 : Form
         Controls.Add(numLok);
         Controls.Add(lblIter);
         Controls.Add(numIter);
+        Controls.Add(lblZakres);
+        Controls.Add(numOd);
+        Controls.Add(numDo);
     }
 }

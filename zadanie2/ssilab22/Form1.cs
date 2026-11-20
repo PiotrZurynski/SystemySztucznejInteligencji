@@ -67,5 +67,9 @@ public partial class Form1 : Form
         }
         txtRaport.Text="N="+n+" rinercji="+rinercji+" rglob="+rglob+" rlok="+rlok+Environment.NewLine;
         txtRaport.Text+="iteracje="+iteracje+" zakres od "+xod+" do "+xdo+Environment.NewLine;
+        txtRaport.Text+="F(0,0)="+PSO.oblicz(0,0)+Environment.NewLine;
+        txtRaport.Text+="F(50,50)="+PSO.oblicz(50,50)+Environment.NewLine;
+        txtRaport.Text+="F(10,20)="+PSO.oblicz(10,20)+Environment.NewLine;
+        
     }
 }

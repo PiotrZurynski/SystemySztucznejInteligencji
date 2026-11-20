@@ -11,6 +11,7 @@ public partial class Form1 : Form
     NumericUpDown numOd;
     NumericUpDown numDo;
     TextBox txtRaport;
+    Random losuj=new Random();
     public Form1()
     {
         InitializeComponent();
@@ -67,9 +68,28 @@ public partial class Form1 : Form
         }
         txtRaport.Text="N="+n+" rinercji="+rinercji+" rglob="+rglob+" rlok="+rlok+Environment.NewLine;
         txtRaport.Text+="iteracje="+iteracje+" zakres od "+xod+" do "+xdo+Environment.NewLine;
-        txtRaport.Text+="F(0,0)="+PSO.oblicz(0,0)+Environment.NewLine;
-        txtRaport.Text+="F(50,50)="+PSO.oblicz(50,50)+Environment.NewLine;
-        txtRaport.Text+="F(10,20)="+PSO.oblicz(10,20)+Environment.NewLine;
-        
+        //txtRaport.Text+="F(0,0)="+PSO.oblicz(0,0)+Environment.NewLine;
+        //txtRaport.Text+="F(50,50)="+PSO.oblicz(50,50)+Environment.NewLine;
+        //txtRaport.Text+="F(10,20)="+PSO.oblicz(10,20)+Environment.NewLine;
+        double[] x1=new double[n];
+        double[] x2=new double[n];
+        double[] lok1=new double[n];
+        double[] lok2=new double[n];
+        double[] v1=new double[n];
+        double[] v2=new double[n];
+        for(int j=0;j<n;j++){
+            x1[j]=xod+losuj.NextDouble()*(xdo-xod);
+            x2[j]=xod+losuj.NextDouble()*(xdo-xod);
+            lok1[j]=x1[j];
+            lok2[j]=x2[j];
+            v1[j]=0;
+            v2[j]=0;
+        }
+        txtRaport.Text+=Environment.NewLine+"Iteracja 0"+Environment.NewLine;
+        txtRaport.Text+="osobnik\tx1\tx2\tF"+Environment.NewLine;
+        for(int j=0;j<n;j++){
+            txtRaport.Text+=j+"\t"+x1[j]+"\t"+x2[j]+"\t"+PSO.oblicz(x1[j],x2[j])+Environment.NewLine;
+            
+        }
     }
 }

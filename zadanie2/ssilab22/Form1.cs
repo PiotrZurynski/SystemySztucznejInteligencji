@@ -85,11 +85,29 @@ public partial class Form1 : Form
             v1[j]=0;
             v2[j]=0;
         }
+        double[] ocena=new double[n];
+        int najlepszy=0;
+        int najgorszy=0;
+        for(int j=0;j<n;j++){
+            ocena[j]=PSO.oblicz(x1[j],x2[j]);
+            if(ocena[j]>ocena[najlepszy]){
+                najlepszy=j;
+            }
+            if(ocena[j]<ocena[najgorszy]){
+                najgorszy=j;
+            }
+        }
+        double glob1=x1[najlepszy];
+        double glob2=x2[najlepszy];
+        double fglob=ocena[najlepszy];
         txtRaport.Text+=Environment.NewLine+"Iteracja 0"+Environment.NewLine;
         txtRaport.Text+="osobnik\tx1\tx2\tF"+Environment.NewLine;
         for(int j=0;j<n;j++){
-            txtRaport.Text+=j+"\t"+x1[j]+"\t"+x2[j]+"\t"+PSO.oblicz(x1[j],x2[j])+Environment.NewLine;
-            
+            txtRaport.Text+=j+"\t"+x1[j]+"\t"+x2[j]+"\t"+ocena[j]+Environment.NewLine;
+
         }
+        txtRaport.Text+="Najlepszy osobnik"+najlepszy+" x1="+x1[najlepszy]+" x2="+x2[najlepszy]+" F="+ocena[najlepszy]+Environment.NewLine;
+        txtRaport.Text+="Najgorszy osobnik"+najgorszy+" x1="+x1[najgorszy]+" x2="+x2[najgorszy]+" F="+ocena[najgorszy]+Environment.NewLine;
+        txtRaport.Text+="xglob: x1="+glob1+" x2="+glob2+" F="+fglob+Environment.NewLine;
     }
 }

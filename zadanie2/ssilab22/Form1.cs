@@ -86,10 +86,12 @@ public partial class Form1 : Form
             v2[j]=0;
         }
         double[] ocena=new double[n];
+        double[] flok = new double[n];
         int najlepszy=0;
         int najgorszy=0;
         for(int j=0;j<n;j++){
             ocena[j]=PSO.oblicz(x1[j],x2[j]);
+            flok[j]=ocena[j];
             if(ocena[j]>ocena[najlepszy]){
                 najlepszy=j;
             }
@@ -108,6 +110,34 @@ public partial class Form1 : Form
         }
         txtRaport.Text+="Najlepszy osobnik"+najlepszy+" x1="+x1[najlepszy]+" x2="+x2[najlepszy]+" F="+ocena[najlepszy]+Environment.NewLine;
         txtRaport.Text+="Najgorszy osobnik"+najgorszy+" x1="+x1[najgorszy]+" x2="+x2[najgorszy]+" F="+ocena[najgorszy]+Environment.NewLine;
+        txtRaport.Text+="xglob: x1="+glob1+" x2="+glob2+" F="+fglob+Environment.NewLine;
+
+        for(int j=0;j<n;j++){
+            double rndGlob=losuj.NextDouble();
+            double rndLok=losuj.NextDouble();
+            v1[j]=v1[j]*rinercji+(glob1-x1[j])*rglob*rndGlob+(lok1[j]-x1[j])*rlok*rndLok;
+            v2[j]=v2[j]*rinercji+(glob2-x2[j])*rglob*rndGlob+(lok2[j]-x2[j])*rlok*rndLok;
+            x1[j]=x1[j]+v1[j];
+            x2[j]=x2[j]+v2[j];
+        }
+        for(int j=0;j<n;j++){
+            ocena[j]=PSO.oblicz(x1[j],x2[j]);
+            if(ocena[j]>flok[j]){
+                flok[j]=ocena[j];
+                lok1[j]=x1[j];
+                lok2[j]=x2[j];
+            }
+            if(ocena[j]>fglob){
+                fglob=ocena[j];
+                glob1=x1[j];
+                glob2=x2[j];
+            }
+        }
+        txtRaport.Text+=Environment.NewLine+"Iteracja 1"+Environment.NewLine;
+        txtRaport.Text+="osobnik\tx1\tx2\tF"+Environment.NewLine;
+        for(int j=0;j<n;j++){
+            txtRaport.Text+=j+"\t"+x1[j]+"\t"+x2[j]+"\t"+ocena[j]+Environment.NewLine;
+        }
         txtRaport.Text+="xglob: x1="+glob1+" x2="+glob2+" F="+fglob+Environment.NewLine;
     }
 }

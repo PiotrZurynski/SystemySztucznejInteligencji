@@ -111,7 +111,7 @@ public partial class Form1 : Form
         txtRaport.Text+="Najlepszy osobnik"+najlepszy+" x1="+x1[najlepszy]+" x2="+x2[najlepszy]+" F="+ocena[najlepszy]+Environment.NewLine;
         txtRaport.Text+="Najgorszy osobnik"+najgorszy+" x1="+x1[najgorszy]+" x2="+x2[najgorszy]+" F="+ocena[najgorszy]+Environment.NewLine;
         txtRaport.Text+="xglob: x1="+glob1+" x2="+glob2+" F="+fglob+Environment.NewLine;
-
+    for(int it=1;it<=iteracje;it++){
         for(int j=0;j<n;j++){
             double rndGlob=losuj.NextDouble();
             double rndLok=losuj.NextDouble();
@@ -133,11 +133,12 @@ public partial class Form1 : Form
                 glob2=x2[j];
             }
         }
-        txtRaport.Text+=Environment.NewLine+"Iteracja 1"+Environment.NewLine;
+        txtRaport.Text+=Environment.NewLine+"Iteracja "+it+Environment.NewLine;
         txtRaport.Text+="osobnik\tx1\tx2\tF"+Environment.NewLine;
         for(int j=0;j<n;j++){
             txtRaport.Text+=j+"\t"+x1[j]+"\t"+x2[j]+"\t"+ocena[j]+Environment.NewLine;
         }
         txtRaport.Text+="xglob: x1="+glob1+" x2="+glob2+" F="+fglob+Environment.NewLine;
+    }
     }
 }

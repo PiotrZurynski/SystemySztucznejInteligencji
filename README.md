@@ -1,3 +1,2 @@
-Systemy sztucznej inteligencji\
-Piotr Żuryński\
-169544
+169544\
+Lab 1

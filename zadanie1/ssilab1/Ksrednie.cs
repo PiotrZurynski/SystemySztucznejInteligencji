@@ -139,7 +139,7 @@ public static class KSrednie{
                 tekst+=" (grupa pusta)"+Environment.NewLine;
             }else{
                 for(int i=0;i<n;i++){
-                    tekst+=" x"+(j+1)+" min="+min[i].ToString("F4")+" max="+max[i].ToString("F4")+Environment.NewLine;
+                    tekst+=" x"+(i+1)+" min="+min[i].ToString("F4")+" max="+max[i].ToString("F4")+Environment.NewLine;
                 }
                 tekst+=" probki: "+numery+Environment.NewLine;
             }

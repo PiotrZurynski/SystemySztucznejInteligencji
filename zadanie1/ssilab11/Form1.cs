@@ -8,6 +8,7 @@ public partial class Form1 : Form
     NumericUpDown numIter;
     NumericUpDown numFcm;
     TextBox txtRaport;
+    Random losuj = new Random();
     public Form1()
     {
         InitializeComponent();
@@ -62,6 +63,33 @@ public partial class Form1 : Form
         txtRaport.Text+="grupy="+m+" iteracje="+iteracje+" fcm_m="+fcm_m+Environment.NewLine;
         List<List<double>>punkty=WczytajCsv(sciezka);
         txtRaport.Text+="punktow="+punkty.Count+" atrybutow="+punkty[0].Count+Environment.NewLine;
+        int M=punkty.Count;
+        int n=punkty[0].Count;
+        double[,] D=new double[m,M];
+        double[,] U=new double[m,M];
+        double[,] V=new double[m,n];
+        for(int j=0;j<m;j++){
+            for(int s=0;s<M;s++){
+                D[j,s]=0.1+losuj.NextDouble();
+            }
+        }
+        double wykladnik=1.0/(1.0-fcm_m);
+        for(int s=0;s<M;s++){
+            double suma=0;
+            for(int j=0;j<m;j++){
+                suma+=Math.Pow(D[j,s],wykladnik);
+            }
+            for(int j=0;j<m;j++){
+                U[j,s]=Math.Pow(D[j,s],wykladnik)/suma;
+            }
+        }
+        txtRaport.Text+=Environment.NewLine+"Początkowe U dla punktu 0:"+Environment.NewLine;
+        double sprawdz=0;
+        for(int j=0;j<m;j++){
+            txtRaport.Text+="grupa "+j+": "+U[j,0]+Environment.NewLine;
+            sprawdz+=U[j,0];
+        }
+        txtRaport.Text+="suma="+sprawdz+Environment.NewLine;
     }
     List<List<double>>WczytajCsv(string plik){
         List<List<double>>punkty=new List<List<double>>();

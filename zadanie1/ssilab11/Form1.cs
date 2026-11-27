@@ -1,3 +1,4 @@
+using System.Globalization;
 namespace ssilab11;
 
 public partial class Form1 : Form
@@ -59,7 +60,24 @@ public partial class Form1 : Form
         double fcm_m=(double)numFcm.Value;
         txtRaport.Text="plik="+sciezka+Environment.NewLine;
         txtRaport.Text+="grupy="+m+" iteracje="+iteracje+" fcm_m="+fcm_m+Environment.NewLine;
-
+        List<List<double>>punkty=WczytajCsv(sciezka);
+        txtRaport.Text+="punktow="+punkty.Count+" atrybutow="+punkty[0].Count+Environment.NewLine;
+    }
+    List<List<double>>WczytajCsv(string plik){
+        List<List<double>>punkty=new List<List<double>>();
+        string[] linie=File.ReadAllLines(plik);
+        foreach(string linia in linie){
+            if(linia.Trim()==""){
+                continue;
+            }
+            string[] czesci=linia.Split(',',';');
+            List<double>punkt=new List<double>();
+            foreach(string czesc in czesci){
+                punkt.Add(double.Parse(czesc.Trim(),CultureInfo.InvariantCulture));
+            }
+            punkty.Add(punkt);
+        }
+        return punkty;
     }
 }
 
